@@ -6,17 +6,20 @@
  * and open the template in the editor.
  */
 
+$mainmenuopt = isset($_GET["opt"])? $_GET["opt"]: "1";///Activa la primera opcion del main menu
+
 ?>
 <div class="row">
     <div class="col-xs-5 col-md-2">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">Cras <span class="hidden-xs">justo odio</span></a>
-            <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item">Morbi leo risus</a>
-            <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item">Vestibulum at eros</a>
-        </div>        
+            <?php include 'block/mainmenu.php';?>
         
     </div>    
-    <div class="col-xs-15 col-sm-7 col-md-10">.col-xs-12 .col-sm-6 .col-md-8</div>  
+    <div class="col-xs-15 col-sm-7 col-md-10">
+        <?php 
+            switch($mainmenuopt){
+                case "1": include_once 'block/miperfil.php';break;
+                default : include_once 'block/miperfil.php';break;
+            }
+        ?>    
+    </div>  
 </div>

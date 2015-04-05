@@ -67,5 +67,25 @@
                             $this->close_connect($con);
                             return $retorno;
                         }
+                        
+/***************************************************************************************************************/
+                        function get_mainmenu($rol){
+                            $con = $this->start_connect();
+                            $menu = array();
+                            $query = "SELECT * FROM `mainmenu` WHERE `status` = '1' AND `access`>'".$rol."';";
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                $index = 0;
+                                while($row = mysqli_fetch_array($result)){
+                                    $menu[$index][0] = $row['id'];
+                                    $menu[$index][1] = $row['name'];
+                                    $menu[$index][2] = $row['desc'];
+                                    $menu[$index][3] = $row['img'];
+                                    $index++;
+                                }
+                            }
+                            $this->close_connect($con);
+                            return $menu;
+                        }
 	}
 ?>

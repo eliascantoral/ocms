@@ -14,6 +14,8 @@
             $_SESSION["ocms_userid"] =  $user[0]; 
             $_SESSION["ocms_name"] =  $user[1] . " " . $user[2];
             $_SESSION["ocms_mail"] =  $user[3];
+            $_SESSION["ocms_rol"] = $user[4];
+            $_SESSION["ocms_status"] = $user[5];
             return $user;
     }
     function get_userdata($data){

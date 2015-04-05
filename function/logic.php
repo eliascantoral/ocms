@@ -55,7 +55,9 @@
 		}
 		return false;
 	}
+        
 /********************************************************************************************************************/	
         
-        include_once('user_logic.php');
+        include_once 'user_logic.php';
+        include_once 'home_logic.php';
 ?>
