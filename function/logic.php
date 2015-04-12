@@ -3,6 +3,14 @@
 	function init_vars(){
 		session_start();		
 	}
+        function test_connection(){
+            include_once("backend/backend.php");
+            $backend = new backend();
+            $test = $backend->test();                        
+            if(!$test){
+                echo "Error en conexión con la base de datos.";
+            }
+        }
 	function get_variable($var){
 		switch($var){
 			case "home": return "http://localhost/ocms";

@@ -8,7 +8,8 @@
 
     function get_header(){
         include_once 'function/logic.php';
-        init_vars();        
+        init_vars();
+        test_connection();
     }
     function logout(){
         $_SESSION = array();

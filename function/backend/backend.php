@@ -35,14 +35,14 @@
                         }
  /********************************************************************************************************/                       
 			public function test(){
-					$con = $this->start_connect();
-					if($con){
-						$this->close_connect($con);
-						return true;
-					}else{
-						return false;
-					}
-				}
+                                $con = $this->start_connect();
+                                if($con){
+                                        $this->close_connect($con);
+                                        return true;
+                                }else{
+                                        return false;
+                                }
+                        }
                                
                         public function login($user, $pass){
                             $con = $this->start_connect();

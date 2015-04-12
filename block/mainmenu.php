@@ -7,7 +7,7 @@
  */
 
 ?>
-        <div class="list-group">
+        <div class="list-group nav-justified">
             <?php $menu = get_mainmenu();
                 for($i=0; $i<sizeof($menu);$i++){?>
                     <a href="?opt=<?php echo $menu[$i][0];?>" class="list-group-item <?php if($mainmenuopt==$menu[$i][0]) echo "active";?>">
