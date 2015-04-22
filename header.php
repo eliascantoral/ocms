@@ -12,10 +12,9 @@ and open the template in the editor.
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>    
-        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">        
+        <title>OCMS</title>    
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <link rel="stylesheet" href="style/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="style/ihover.css">

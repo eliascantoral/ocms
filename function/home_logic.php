@@ -15,4 +15,7 @@ function get_mainmenu(){
     return array();
 }
 
+function checkaccess(){
+    return TRUE;
+}
 ?>

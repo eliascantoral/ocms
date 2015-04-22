@@ -18,6 +18,12 @@
 			default:{return "";}
 		}
 	}
+        function print_array($array){
+            echo "<pre>";
+            print_r($array);
+            echo "</pre>";
+        }
+        
 	function is_login(){
 		$user = false;
 		if(isset($_SESSION["ocms_userid"])){$user = $_SESSION["ocms_userid"];}
@@ -68,4 +74,5 @@
         
         include_once 'user_logic.php';
         include_once 'home_logic.php';
+        include_once 'object_logic.php';
 ?>

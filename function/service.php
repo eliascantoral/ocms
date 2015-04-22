@@ -20,6 +20,35 @@
                     }
                 }
                 break;}
+                
+            case "101":{///Agregar formulario de configuracón de campos personalizados
+                if(isset($_POST["type"])){
+                    $type = $_POST["type"];
+                    include_once 'logic.php';
+                    $tempid = time().$type;
+                    $field = get_fieldconf($type);
+                    ?>
+                        <div class="panel panel-default" id="panel_<?php echo $tempid;?>">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><?php echo $field[0][1];?></h3>
+                                <input type="hidden" id="pane_status_<?php echo $tempid;?>" value="1">
+                            </div>
+                            <div class="panel-body">
+                                <?php include '../block/fields/'.$field[0][3].'/conf.php';?>
+                            </div>
+                        </div>                    
+                    <?php                     
+                }
+                break;}
+            case "102":{///Guardar o actualizar campo personalizado
+                if(isset($_POST["type"])){
+                    include_once 'logic.php';
+                    $type = $_POST["type"];
+                    $field = get_fieldconf($type);
+                    include '../block/fields/'.$field[0][3].'/function.php';
+                    savefield($_POST);
+                }
+                break;}
             
         }
         

@@ -87,5 +87,39 @@
                             $this->close_connect($con);
                             return $menu;
                         }
+/*******************************************************************************************************************/
+                        function get_objectsfieldtype($type = false){
+                            $con = $this->start_connect();
+                            $list = array();
+                            $query = $type ? ("SELECT * FROM `field_type` WHERE `id`='".$type."';"): ("SELECT * FROM `field_type` WHERE `status`='1';");
+                            $result = mysqli_query($con, $query);                                                        
+                            if($result){                                
+                                while($row = mysqli_fetch_array($result)){
+                                    $id = $row['id'];
+                                    $name = $row['name'];
+                                    $desc = $row['desc'];
+                                    $folder = $row['folder'];
+                                    array_push($list, array($id,$name,$desc,$folder ));
+                                }
+                            }
+                            $this->close_connect($con);
+                            return $list;
+                        }
+                        function set_objectfield($name, $id, $desc, $object, $type){
+                            $con = $this->start_connect();
+                            $return = false;
+                            $time = time();
+                            $query = "INSERT INTO `field` "
+                                    . "(`id`, `name`, `idname`, `desc`, `object`, `type`, `status`, `createtime`, `modtime`) "
+                                    . "VALUES (NULL, '".$name."', '".$id."', '".$desc."', '".$object."', '".$type."', '1', '".$time."', '".$time."');";
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                $return = true;
+                            }
+                            $this->close_connect($con);
+                            return $return;
+                            
+                        }
+                        
 	}
 ?>

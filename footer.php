@@ -9,13 +9,20 @@
 ?>
         
         </div>
-        <div id="ajax_loader">
+        <div class="modal fade" id="ajax_loader"></div>  
         </div>
     </body>
 </html>
 
 <script>
-
+        function ajax_loading(){            
+            $("#ajax_loader").modal({
+                backdrop: 'static'
+            });
+        }
+        function ajax_end(){
+            $("#ajax_loader").modal('hide')
+        }
 	function show_message(where, message){
 		$("#"+where).text(message);
 		$("#"+where).show("fast");
@@ -29,7 +36,8 @@
 	});
 	
 	
-	function ajax_(action, data, update, dest){	
+	function ajax_(action, data, update, dest){
+                ajax_loading();
 		$.ajax({
 		  async:false, 
 		  cache:false,
@@ -49,12 +57,12 @@
 			}else if(dest!=""){						
 				document.getElementById(dest).value=respuesta;
 			}
-			$("#ajax_loader").fadeOut("fast");
+			ajax_end();
 		  },
-		  beforeSend:function(){
-			$("#ajax_loader").fadeIn( "slow" );
+		  beforeSend:function(){                      
+			
 		  },
-		  error:function(objXMLHttpRequest){$("#ajax_loader").fadeOut("fast");console.log(objXMLHttpRequest);}
+		  error:function(objXMLHttpRequest){ajax_end();console.log(objXMLHttpRequest);}
 		});
 		
 	}
@@ -87,5 +95,5 @@
 		  error:function(objXMLHttpRequest){$("#"+dest).removeClass("ajax_loader");console.log(objXMLHttpRequest);}
 		});
 		
-	}	
+	}		
 </script>

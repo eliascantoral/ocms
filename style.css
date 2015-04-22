@@ -9,9 +9,9 @@ and open the template in the editor.
 */
 
 body { padding-top: 70px;  background-color: #eee;}
-.ajax_loader{
+#ajax_loader{
 	background: url(image/ajax-loader.gif) no-repeat 50% 50%;
-	background-size: contain;
+	background-size: 60px 60px;
 	background-color:rgba(240,240,240,0.5);
 }
 .message{
