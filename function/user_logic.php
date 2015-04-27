@@ -20,6 +20,6 @@
     }
     function get_userdata($data){
         if(isset($_SESSION["ocms_".$data])){return $_SESSION["ocms_".$data];}
-        return "Good try.";
+        return false;
     }
 ?>

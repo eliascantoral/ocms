@@ -120,6 +120,78 @@
                             return $return;
                             
                         }
-                        
+                        function save_objecttype($name, $desc, $creater, $status = 2){
+                            $con = $this->start_connect();
+                            $return = false;
+                            $time = time();
+                            $query = "INSERT INTO `object_type` (`id`, `name`, `desc`, `createtime`, `creater`, `status`) "
+                                    . "VALUES (NULL, '".$name."', '".$desc."', '".$time."', '".$creater."', '".$status."');";
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                $return = mysqli_insert_id($con);
+                            }
+                            $this->close_connect($con);
+                            return $return;
+                        }
+                        function update_objecttype($objectid, $name, $desc, $status){
+                            $con = $this->start_connect();
+                            $return = false;
+                            $query ="UPDATE `ocms`.`object_type` SET"; 
+                            if($name) $query.= "`name` = '".$name."' ";
+                            if($desc) $query.= $name?"," . "`desc` = '".$desc."' ":"`desc` = '".$desc."' ";
+                            if($status) $query.= $name||$desc? "," . "`status` = '".$status."' ":"`status` = '".$status."' ";
+                            
+                            $query .="WHERE `object_type`.`id` = '".$objectid."';";                          
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                $return = true;
+                            }
+                            $this->close_connect($con);
+                            return $return;
+                        }
+                        function delete_objecttype($objectid, $user){
+                            $con = $this->start_connect();
+                            $return = false;
+                            $query = "UPDATE `object_type` SET `status` = '0' WHERE `object_type`.`id` = '".$objectid."';";
+                            
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                $return = true;
+                            }
+                            $this->close_connect($con);
+                            return $return;
+                        }
+                        function get_objecttypedata($objectid){
+                            $con = $this->start_connect();
+                            $return = array();
+                            $name = "";
+                            $desc = "";
+                            $status = 2;
+                            $query = "SELECT * FROM `object_type` WHERE `object_type`.`id`='".$objectid."';";
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                while($row = mysqli_fetch_array($result)){
+                                    $name = $row['name'];
+                                    $desc = $row['desc'];
+                                    $status = $row['status'];
+                                }
+                            }
+                            $return = array($name, $desc, $status);
+                            $this->close_connect($con);
+                            return $return;
+                        }
+                        function get_objecttypelist(){
+                            $con = $this->start_connect();
+                            $return = array();
+                            $query = "SELECT * FROM `object_type` WHERE `object_type`.`status`<>'0';";
+                            $result = mysqli_query($con, $query);
+                            if($result){
+                                while($row = mysqli_fetch_array($result)){
+                                    array_push($return, array($row['id'],$row['name'],$row['desc'],$row['status']));
+                                }
+                            }
+                            $this->close_connect($con);
+                            return $return;                            
+                        }
 	}
 ?>

@@ -49,7 +49,27 @@
                     savefield($_POST);
                 }
                 break;}
-            
+            case "103":{/// Eliminar o¿tipo de objeto
+                if(isset($_POST["objectid"])){
+                    session_start();
+                    include_once 'logic.php';
+                    $objectid = $_POST["objectid"];
+                    delete_objecttype($objectid);
+                    
+                }
+                break;}
+            case "104": {/// Update object type
+                if(isset($_POST["objectid"]) && isset($_POST["name"]) && isset($_POST["desc"]) && isset($_POST["status"])){
+                    session_start();
+                    include_once 'logic.php';
+                    if(update_objecttype($_POST["objectid"],$_POST["name"],$_POST["desc"],$_POST["status"])){
+                        echo json_encode(array('r'=>1,'d'=>"Se han guardado los cambios con exito."));
+                    }else{
+                        echo json_encode(array('r'=>0,'d'=>"Ocurrio un error por favor intente nuevamente."));
+                    }
+                    
+                }
+                break;}
         }
         
     }
